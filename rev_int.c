@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <limits.h>
+int rev(int x) {
+    int result = 0;
+    while (x != 0) {
+        int digit = x % 10;
+        if (result > INT_MAX / 10 || (result == INT_MAX / 10 && digit > 7)) return 0;
+        if (result < INT_MIN / 10 || (result == INT_MIN / 10 && digit < -8)) return 0;
+        result = result * 10 + digit;
+        x /= 10;
+    }
+    return result;
+}
+int main() {
+    int x;
+    printf("Enter: ");
+    scanf("%d", &x);
+    printf("Rev: %d\n", rev(x));
+    return 0;
+}
+
